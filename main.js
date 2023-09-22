@@ -1,24 +1,34 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.scss"
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+import Alpine from "alpinejs"
+import collapse from "@alpinejs/collapse"
 
-setupCounter(document.querySelector('#counter'))
+Alpine.plugin(collapse)
+
+Alpine.data('lessons', () => ({
+  collection: [
+    {
+      id:1, 
+      title: 'what is threejs', 
+      body: `Three.js is a JavaScript library that simplifies the creation of 3D graphics on the web. 
+      It makes it easier for developers to work with WebGL, a low-level 3D graphics API, by abstracting away many of its complexities. This allows developers to create interactive and visually appealing 3D experiences for their websites.`,
+      active: false,
+      type: "point"
+    },
+    {
+      id:2, 
+      title: 'components', 
+      body: 'components.jpg',
+      active: false,
+      type: "slide"
+    }
+  ],
+  toggleLessonShow(id) {
+    
+    this.collection = this.collection.map(lesson => {
+      return lesson.id === parseInt(id) ? {...lesson, active: !lesson.active} : lesson
+    })
+  }
+}))
+
+Alpine.start()
