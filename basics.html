@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Threejs Tuts - basics</title>
+  </head>
+  <body>
+
+    <main class="max-w-screen-md mx-auto pt-12">
+
+      <header class="text-6xl font-bold mb-12">
+        <h1>Basics</h1>
+      </header>
+  
+      <div x-data="lessons">
+  
+        <ul class="px-2">
+          
+          <template x-for="lesson in collection" :key="lesson.id">
+  
+            <li class="mb-8">
+  
+              <div class="flex justify-between items-center mb-2 bg-secondary border border-secondary rounded-2xl cursor-pointer" @click="toggleLessonShow(lesson.id)">
+                <h2 
+                  class="text-4xl text-primary font-bold capitalize p-4"
+                  x-text="lesson.title" 
+                ></h2>
+                <span
+                  class="w-[4rem] h-[4rem] bg-contain bg-no-repeat transition-transform"
+                  :class="lesson.active ? 'rotate-180' : 'rotate-0'"
+                  style="background-image: url(/down-arrow-5-svgrepo-com.svg);"
+                ></span>
+              </div>
+  
+              <template x-if="lesson.type === 'point'">
+                <p 
+                class="text-3xl leading-snug pt-4" 
+                x-text="lesson.body"
+                x-show="lesson.active" 
+                x-collapse
+                ></p>
+              </template>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
