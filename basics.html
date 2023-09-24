@@ -42,6 +42,12 @@
                 x-collapse
                 ></p>
               </template>
+
+              <template x-if="lesson.type === 'slide'">
+                <div x-show="lesson.active" x-collapse >
+                  <img :src="lesson.body" alt="threejs main components">
+                </div>
+              </template>
             </li>
           </template>
         </ul>
