@@ -18,7 +18,7 @@ Alpine.data('lessons', () => ({
     {
       id:2, 
       title: 'components', 
-      body: 'components.jpg',
+      body: '/components.jpg',
       active: false,
       type: "slide"
     }
