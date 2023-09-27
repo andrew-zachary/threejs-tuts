@@ -21,7 +21,7 @@
   
             <li>
   
-              <div class="flex justify-between items-center bg-secondary border border-secondary rounded-2xl cursor-pointer" @click="toggleLessonShow(lesson.id)">
+              <div class="tip-header flex justify-between items-center bg-secondary border border-secondary rounded-2xl cursor-pointer" @click="toggleLessonShow(lesson.id)">
                 <h2 
                   class="text-4xl text-primary font-bold capitalize p-4"
                   x-text="lesson.title" 
@@ -34,19 +34,26 @@
               </div>
   
               <template x-if="lesson.type === 'point'">
-                <div class="py-4">
-                  <p 
-                  class="text-3xl leading-snug" 
-                  x-text="lesson.body"
-                  x-show="lesson.active" 
-                  x-collapse
-                  ></p>
+                <div class="tip-body py-4">
+                  <div class="body-content" x-show="lesson.active" x-collapse>
+                    <p class="text-3xl leading-snug" x-text="lesson.body"></p>
+                  </div>
                 </div>
               </template>
 
               <template x-if="lesson.type === 'slide'">
-                <div class="py-4" x-show="lesson.active" x-collapse >
-                  <img :src="lesson.body" alt="threejs main components">
+                <div class="tip-body py-4">
+                  <div class="body-content" x-show="lesson.active" x-collapse>
+                    <img :src="lesson.img" alt="threejs main components">
+                  </div>
+                </div>
+              </template>
+
+              <template x-if="lesson.type === 'example'">
+                <div class="tip-body py-4">
+                  <div class="body-content" x-show="lesson.active" x-collapse>
+                    <pre x-text="lesson.code"></pre>
+                  </div>
                 </div>
               </template>
             </li>
