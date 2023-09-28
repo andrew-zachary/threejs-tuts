@@ -52,7 +52,7 @@
               <template x-if="lesson.type === 'example'">
                 <div class="tip-body py-4">
                   <div class="body-content" x-show="lesson.active" x-collapse>
-                    <pre x-text="lesson.code"></pre>
+                    <pre><code class="language-javascript text-3xl" x-html="lesson.code"></code></pre>
                   </div>
                 </div>
               </template>
@@ -61,6 +61,6 @@
         </ul>
       </div>
     </main>
-    <script type="module" src="../main.js"></script>
+    <script type="module" src="../src/main.js"></script>
   </body>
 </html>

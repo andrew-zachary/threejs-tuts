@@ -1,7 +1,14 @@
-import "./style.scss"
-
 import Alpine from "alpinejs"
 import collapse from "@alpinejs/collapse"
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+import "./style.scss"
+import "highlight.js/styles/tokyo-night-dark.min.css"
+
+import { firstSceneCode } from "./code-snippets";
+
+hljs.registerLanguage('javascript', javascript);
 
 Alpine.plugin(collapse)
 
@@ -24,36 +31,8 @@ Alpine.data('lessons', () => ({
     },
     {
       id:3, 
-      title: 'first scene',
-      code: `
-      import { BoxGeometry, 
-        Mesh, 
-        MeshBasicMaterial, 
-        PerspectiveCamera, 
-        Scene, 
-        WebGLRenderer } from 'three'
-    
-      // scene
-      const scene = new Scene()
-      
-      // camera
-      const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
-      camera.position.z = 5
-      
-      // materials
-      const basicMaterial = new MeshBasicMaterial({color: 'yellow'})
-      
-      // create cube mesh and add it to the scene
-      const cubeGeometry = new BoxGeometry(1, 1, 1)
-      const cubeMesh = new Mesh(cubeGeometry, basicMaterial)
-      scene.add(cubeMesh)
-      
-      // render
-      const canvas = document.querySelector('#pg')
-      const renderer = new WebGLRenderer({canvas})
-      renderer.setSize(window.innerWidth, window.innerHeight)
-      renderer.render(scene, camera)
-      `,
+      title: 'create first scene',
+      code: hljs.highlight(firstSceneCode, {language: 'javascript'}).value,
       active: false,
       type: "example"
     }
@@ -67,3 +46,5 @@ Alpine.data('lessons', () => ({
 }))
 
 Alpine.start()
+
+hljs.highlightAll()
