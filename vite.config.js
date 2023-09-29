@@ -9,7 +9,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
-                basics: resolve(__dirname, 'basics/index.html')
+                basics: resolve(__dirname, 'basics/index.html'),
+                firstScene: resolve(__dirname, 'labs/first-scene/index.html'),
             },
         },
     },

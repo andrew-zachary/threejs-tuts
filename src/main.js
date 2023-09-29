@@ -1,14 +1,14 @@
 import Alpine from "alpinejs"
 import collapse from "@alpinejs/collapse"
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
+import hljs from "highlight.js/lib/core"
+import javascript from "highlight.js/lib/languages/javascript"
 
 import "./style.scss"
 import "highlight.js/styles/tokyo-night-dark.min.css"
 
-import { firstSceneCode } from "./code-snippets";
+import { firstSceneCode } from "./code-snippets"
 
-hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('javascript', javascript)
 
 Alpine.plugin(collapse)
 
