@@ -26,3 +26,21 @@ const canvas = document.querySelector('#pg')
 const renderer = new WebGLRenderer({canvas})
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.render(scene, camera)`
+
+export const orbitControls = `
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+
+...
+
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+
+const rendering = () => {
+  renderer.render(scene, camera)
+  controls.update()
+  window.requestAnimationFrame(rendering)
+}
+
+rendering()
+`

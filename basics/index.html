@@ -52,7 +52,17 @@
               <template x-if="lesson.type === 'example'">
                 <div class="tip-body py-4">
                   <div class="body-content" x-show="lesson.active" x-collapse>
-                    <pre><code class="language-javascript text-3xl" x-html="lesson.code"></code></pre>
+                    <template x-if="lesson.hasLab">
+                      <div class="border-2 border-secondary py-2 px-2 mb-4 rounded-lg inline-block">
+                        <a class="text-2xl font-bold capitalize flex items-center justify-around" :href="lesson.hasLab">
+                          <span class="pr-2">open lab</span>
+                          <img class="w-[2rem] h-[2rem]" src="/monitor-svgrepo-com.svg" alt="">
+                        </a>
+                      </div>
+                    </template>
+                    <div>
+                      <pre><code class="language-javascript text-3xl" x-html="lesson.code"></code></pre>
+                    </div>
                   </div>
                 </div>
               </template>
