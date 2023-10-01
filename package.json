@@ -1,24 +1,15 @@
 {
   "name": "threejs-tuts",
-  "private": true,
-  "version": "1.0.0",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "sass": "^1.69.5",
-    "tailwindcss": "^3.3.5",
-    "vite": "^4.4.5"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@alpinejs/collapse": "^3.13.2",
-    "alpinejs": "^3.13.2",
-    "highlight.js": "^11.9.0",
-    "three": "^0.158.0"
+    "astro": "^3.5.5"
   }
 }
