@@ -1,0 +1,10 @@
+{
+    "name": "threejs-tuts",
+    "short_name": "threejs-tuts",
+    "description": "awesome threejs-tuts",
+    "start_url": "/",
+    "icons": [
+        { "src": "/android-chrome-192x192.png", "type": "image/png", "sizes": "192x192" },
+        { "src": "/android-chrome-512x512.png", "type": "image/png", "sizes": "512x512" }
+    ]
+}
