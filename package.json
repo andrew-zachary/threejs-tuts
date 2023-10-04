@@ -10,8 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@alpinejs/collapse": "^3.13.3",
     "@astrojs/tailwind": "^5.0.2",
+    "alpinejs": "^3.13.3",
     "astro": "^3.5.5",
-    "tailwindcss": "^3.3.5"
+    "highlight.js": "^11.9.0",
+    "sass": "^1.69.5",
+    "tailwindcss": "^3.3.5",
+    "three": "^0.158.0"
   }
 }

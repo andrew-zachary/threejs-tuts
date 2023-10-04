@@ -1,0 +1,66 @@
+---
+import MainLayout from "../layouts/main.astro";
+import PageTitle from "../components/page-title.astro"
+---
+<MainLayout>
+
+    <PageTitle txt="Basics" />
+    
+    <div x-data="lessons">
+  
+        <ul class="px-2">
+            
+            <template x-for="lesson in collection" :key="lesson.id">
+
+            <li>
+
+                <div class="tip-header flex justify-between items-center bg-secondary border border-secondary rounded-2xl cursor-pointer" @click="toggleLessonShow(lesson.id)">
+                <h2 
+                    class="text-4xl text-primary font-bold capitalize p-4"
+                    x-text="lesson.title" 
+                ></h2>
+                <span
+                    class="w-[4rem] h-[4rem] bg-contain bg-no-repeat transition-transform"
+                    :class="lesson.active ? 'rotate-180' : 'rotate-0'"
+                    style="background-image: url(/down-arrow-5-svgrepo-com.svg);"
+                ></span>
+                </div>
+
+                <template x-if="lesson.type === 'point'">
+                    <div class="tip-body py-4">
+                        <div class="body-content" x-show="lesson.active" x-collapse>
+                        <p class="text-3xl leading-snug" x-text="lesson.body"></p>
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="lesson.type === 'slide'">
+                    <div class="tip-body py-4">
+                        <div class="body-content" x-show="lesson.active" x-collapse>
+                        <img :src="lesson.img" alt="threejs main components">
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="lesson.type === 'example'">
+                    <div class="tip-body py-4">
+                        <div class="body-content" x-show="lesson.active" x-collapse>
+                        <template x-if="lesson.hasLab">
+                            <div class="inline-block p-2 my-8 border-2 border-secondary rounded-lg">
+                            <a class="text-2xl font-bold capitalize flex items-center justify-around" :href="lesson.hasLab">
+                                <span class="pr-2">open lab</span>
+                                <img class="w-[2rem] h-[2rem]" src="/monitor-svgrepo-com.svg" alt="">
+                            </a>
+                            </div>
+                        </template>
+                        <div>
+                            <pre><code class="language-javascript text-3xl" x-html="lesson.code"></code></pre>
+                        </div>
+                        </div>
+                    </div>
+                </template>
+            </li>
+            </template>
+        </ul>
+    </div>
+</MainLayout>
