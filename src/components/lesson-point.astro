@@ -1,0 +1,17 @@
+---
+const {lesson} = Astro.props
+---
+<div class="tip-header flex justify-between items-center bg-secondary border border-secondary rounded-2xl cursor-pointer"
+@click="active = !active"
+>
+    <h2 class="text-4xl text-primary font-bold capitalize p-4">{lesson.data.title}</h2>
+    <span class="w-[4rem] h-[4rem] bg-contain bg-no-repeat transition-transform"
+        style="background-image: url(/down-arrow-5-svgrepo-com.svg);"
+    ></span>
+</div>
+
+<div class="tip-body py-4">
+    <div class="body-content" x-show="active" x-collapse>
+        <p class="text-3xl leading-snug">{lesson.body}</p>
+    </div>
+</div>

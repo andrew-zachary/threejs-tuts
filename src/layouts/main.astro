@@ -2,8 +2,36 @@
 const { title } = Astro.props
 ---
 <style lang="scss" is:global>
+
 html {
     font-size: 62.5%;
+}
+
+// mixins
+@mixin withRtl($property, $ltr-value, $rtl-value) {
+    & {
+        #{$property}: $ltr-value !important;
+    }
+
+    .is-rtl & {
+        #{$property}: $rtl-value !important;
+    }
+}
+
+// LTR-RTL padding
+.right-left-padding-1 {
+    @include withRtl(padding, 0 1rem 0 0, 0 0 0 1rem);
+}
+.left-right-padding-1 {
+    @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
+}
+
+// LTR-RTL margin
+.right-left-margin-1 {
+    @include withRtl(margin, 0 1rem 0 0, 0 0 0 1rem);
+}
+.left-right-margin-1 {
+    @include withRtl(margin, 0 0 0 1rem, 0 1rem 0 0);
 }
 </style>
 
@@ -11,11 +39,11 @@ html {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>{title}</title>
+		<title>{`Threejs Tuts${title?' - '+title:''}`}</title>
 		<script src="../js/main.js"></script>
 	</head>
 	<body>
-		<main class="max-w-screen-md mx-auto pt-12">
+		<main class="max-w-screen-md mx-auto pt-12 px-2">
 			<slot />
 		</main>
 	</body>

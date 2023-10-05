@@ -3,18 +3,17 @@ import MainLayout from "../layouts/main.astro"
 import PageTitle from "../components/page-title.astro";
 ---
 
-<MainLayout title="Threejs Tuts">
+<MainLayout title="">
 
     <PageTitle txt="threejs tuts" />
 
-    <p class="text-3xl mb-8">
+    <p class="text-3xl mb-8 leading-snug">
         Three.js is a cross-browser JavaScript library and application programming interface used to create and display animated 3D computer graphics in a web browser using WebGL.
     </p>
-    <h2 class="text-4xl font-bold capitalize mb-2">learning Threejs is so fun</h2>
-    <ul class="text-3xl mb-8">
-        <li>starting with basics <a class="font-bold hover:underline decoration-solid" href="basics">here</a>.</li>
-    </ul>
-    <p class="text-3xl">
-        More advanced levels and projects will be added in the future.
+    <p class="mb-8">
+        <a class="text-5xl font-bold capitalize decoration-solid hover:underline" href="basics">learning threejs is so fun - start here</a>
+    </p>
+    <p class="text-3xl leading-snug">
+        Hello, I'm <a class="font-bold capitalize decoration-solid hover:underline" href="https://github.com/andrew-zachary">andrew zachary</a> a frontend web developer, let's learn this fantastic lib together. I will keep adding more advanced levels and projects in the future.
     </p>
 </MainLayout>
