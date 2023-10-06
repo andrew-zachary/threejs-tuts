@@ -5,6 +5,7 @@ import MainLayout from "../layouts/main.astro"
 
 import PageTitle from "../components/page-title.astro"
 import LessonPoint from "../components/lesson-point.astro"
+import LessonSlide from "../components/lesson-slide.astro"
 
 const lessons = await getCollection('lessons')
 console.log(lessons)
@@ -73,10 +74,25 @@ console.log(lessons)
     </div> -->
 
     <ul class="px-2">
-        {lessons.map(lesson => (<li x-data="{active: false}">
+        
+        {lessons.map(lesson => (<li>
 
-        {lesson.data.type === 'point' && <LessonPoint lesson={lesson} />}
+            <div x-data="{active: false}">
+                <div
+                    class="tip-header flex justify-between items-center bg-secondary border border-secondary rounded-2xl cursor-pointer"
+                    @click="active = !active"
+                >
+                    <h2 class="text-4xl text-primary font-bold capitalize p-4">{lesson.data.title}</h2>
+                    <span class="w-[4rem] h-[4rem] bg-contain bg-no-repeat transition-transform"
+                        :class="active ? 'rotate-180' : 'rotate-0'"
+                        style="background-image: url(/down-arrow-5-svgrepo-com.svg);"
+                    ></span>
+                </div>
 
+                {lesson.data.type === 'point' && <LessonPoint lesson={lesson} />}
+
+                {lesson.data.type === 'slide' && <LessonSlide lesson={lesson} />}
+            </div>
         </li>))}
     </ul>
 </MainLayout>

@@ -3,6 +3,6 @@ const {lesson} = Astro.props
 ---
 <div class="tip-body py-4">
     <div class="body-content" x-show="active" x-collapse>
-        <p class="text-3xl leading-snug">{lesson.body}</p>
+        <img src={lesson.data.img} alt="threejs main components">
     </div>
 </div>
