@@ -1,0 +1,18 @@
+---
+const {lesson} = Astro.props
+---
+<div class="tip-body py-4">
+    <div class="body-content" x-show="active" x-collapse>
+        
+        { lesson.hasLab && <div class="inline-block p-2 my-8 border-2 border-secondary rounded-lg">
+            <a class="text-2xl font-bold capitalize flex items-center justify-around" href={lesson.hasLab}>
+                <span class="pr-2">open lab</span>
+                <img class="w-[2rem] h-[2rem]" src="/monitor-svgrepo-com.svg" alt="">
+            </a>
+        </div> }
+
+        <div>
+            <pre><code class="language-javascript text-3xl">{lesson.body}</code></pre>
+        </div>
+    </div>
+</div>

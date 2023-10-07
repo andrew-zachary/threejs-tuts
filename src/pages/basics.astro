@@ -6,9 +6,9 @@ import MainLayout from "../layouts/main.astro"
 import PageTitle from "../components/page-title.astro"
 import LessonPoint from "../components/lesson-point.astro"
 import LessonSlide from "../components/lesson-slide.astro"
+import LessonSnippet from "../components/lesson-snippet.astro"
 
 const lessons = await getCollection('lessons')
-console.log(lessons)
 ---
 
 <MainLayout title="Basics">
@@ -74,7 +74,7 @@ console.log(lessons)
     </div> -->
 
     <ul class="px-2">
-        
+
         {lessons.map(lesson => (<li>
 
             <div x-data="{active: false}">
@@ -92,6 +92,8 @@ console.log(lessons)
                 {lesson.data.type === 'point' && <LessonPoint lesson={lesson} />}
 
                 {lesson.data.type === 'slide' && <LessonSlide lesson={lesson} />}
+
+                {lesson.data.type === 'snippet' && <LessonSnippet lesson={lesson} />}
             </div>
         </li>))}
     </ul>
