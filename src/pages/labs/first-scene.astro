@@ -1,12 +1,16 @@
 ---
+import MainLayout from "../../layouts/main.astro"
 ---
+<script>
 import { BoxGeometry, 
   Mesh, 
   MeshBasicMaterial, 
   PerspectiveCamera, 
   Scene, 
-  WebGLRenderer } from 'three'
+  WebGLRenderer } from "three"
 
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+  
 // scene
 const scene = new Scene()
 
@@ -23,7 +27,22 @@ const cubeMesh = new Mesh(cubeGeometry, basicMaterial)
 scene.add(cubeMesh)
 
 // render
-const canvas = document.querySelector('#pg')
+const canvas = document.querySelector('#first-scene')
 const renderer = new WebGLRenderer({canvas})
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.render(scene, camera)
+
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+
+const rendering = () => {
+  renderer.render(scene, camera)
+  controls.update()
+  window.requestAnimationFrame(rendering)
+}
+
+rendering()
+</script>
+<MainLayout title="first scene lab" lab={true}>
+    <canvas id="first-scene" slot="lab"></canvas>
+</MainLayout>

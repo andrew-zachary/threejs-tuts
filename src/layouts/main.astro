@@ -1,5 +1,5 @@
 ---
-const { title } = Astro.props
+const { title, lab } = Astro.props
 ---
 <style lang="scss" is:global>
 
@@ -42,7 +42,8 @@ html {
 		<title>{`Threejs Tuts${title?' - '+title:''}`}</title>
 		<script src="../js/main.js"></script>
 	</head>
-	<body>
+	<body class:list={['!m-0', {'overflow-hidden':lab}]}>
+        <slot name="lab" />
 		<main class="max-w-screen-md mx-auto pt-12 px-2">
 			<slot />
 		</main>

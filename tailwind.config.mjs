@@ -5,7 +5,8 @@ export default {
 		extend: {},
 		colors: {
 			primary: 'white',
-			secondary: 'black'
+			secondary: 'black',
+			dim1: '#d2d2d2'
 		},
 		screens: {
 			xs: '320px',
