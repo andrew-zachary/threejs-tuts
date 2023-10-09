@@ -1,47 +1,50 @@
-# Astro Starter Kit: Minimal
+# Three.js
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Three.js is a JavaScript library that simplifies the creation of 3D graphics and interactive web experiences in the browser. It empowers developers with an intuitive API, allowing them to easily render 3D scenes, apply textures, and add animations to web projects. Three.js opens the door to the world of 3D without the complexities of low-level graphics programming.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Hi, I'm **Andrew Zachary** a frontend web developer, let's learn this fantastic lib together. I will keep adding more advanced levels and projects in the future.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## About
 
-## 🚀 Project Structure
+This repo is built using AstroBuild to streamline the development process and provide a structured environment for learning Threejs. It offers a hands-on approach to mastering the fundamentals of 3D graphics programming with Threejs.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Features
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- **Interactive Examples:** Dive into a collection of interactive examples that demonstrate key concepts and techniques in Threejs.
+- **Step-by-Step Tutorials:** Follow detailed tutorials to understand how to create various 3D scenes, apply textures, implement animations.
+- **Sample Projects:** Explore sample projects that showcase the capabilities of Threejs in real-world scenarios.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/andrew-zachary/threejs-tuts.git
+    cd threejs-tuts
+    ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. **Install Dependencies:**
+    ```bash
+    npm install
+    ```
 
-## 🧞 Commands
+3. **Run the Development Server:**
+    ```bash
+    npm run dev
+    ```
 
-All commands are run from the root of the project, from a terminal:
+4. **Open Your Browser:**
+    Visit `http://localhost:4200` in your web browser.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Contributing
 
-## 👀 Want to learn more?
+If you'd like to contribute to this learning repository, feel free to fork the project, create a new branch, and submit a pull request. Contributions, whether they are bug fixes, new features, or additional tutorials, are highly encouraged!
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Resources
+
+- [Three.js Documentation](https://threejs.org/docs/)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE), making it open and accessible for everyone.
+
+Happy coding and enjoy learning Three.js!
