@@ -43,7 +43,14 @@ const rendering = () => {
 }
 
 rendering()
+
+// required for responsive resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
 </script>
-<MainLayout title="First Scene Lab" lab={true}>
+<MainLayout title="Responsive Window Lab" lab={true}>
     <canvas id="first-scene" slot="lab"></canvas>
 </MainLayout>
