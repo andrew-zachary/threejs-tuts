@@ -1,0 +1,60 @@
+---
+import MainLayout from "../../layouts/main.astro"
+---
+<script>
+import { BoxGeometry, 
+  Mesh, 
+  MeshBasicMaterial, 
+  PerspectiveCamera, 
+  Scene, 
+  WebGLRenderer } from "three"
+
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+  
+// scene
+const scene = new Scene()
+
+// camera
+const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
+camera.position.z = 5
+
+// materials
+const basicMaterial = new MeshBasicMaterial({color: 'yellow'})
+
+// create cube mesh and add it to the scene
+const cubeGeometry = new BoxGeometry(1, 1, 1)
+const cubeMesh = new Mesh(cubeGeometry, basicMaterial)
+scene.add(cubeMesh)
+
+// create a renderer
+const canvas = document.querySelector('#first-scene')
+const renderer = new WebGLRenderer({
+    canvas,
+    antialias: true
+})
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+
+// do rendering
+const rendering = () => {
+  renderer.render(scene, camera)
+  controls.update()
+  window.requestAnimationFrame(rendering)
+}
+
+rendering()
+
+// required for responsive resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
+</script>
+<MainLayout title="Responsive Window Lab" lab={true}>
+    <canvas id="first-scene" slot="lab"></canvas>
+</MainLayout>
