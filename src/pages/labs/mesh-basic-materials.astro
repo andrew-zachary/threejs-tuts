@@ -1,0 +1,77 @@
+---
+import MainLayout from "../../layouts/main.astro"
+---
+<script>
+import {Mesh, 
+    MeshBasicMaterial, 
+    PerspectiveCamera, 
+    Scene, 
+    WebGLRenderer,
+    Clock,
+    TextureLoader,
+    SphereGeometry,
+    Object3D} from "three"
+  
+// scene
+const scene = new Scene()
+
+// camera
+const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
+camera.position.set(0, 0, 5)
+
+// materials and textures
+const textureLoader = new TextureLoader()
+const earthTexture = textureLoader.load("/textures/texture_2k_earth_daymap.jpg")
+const moonTexture = textureLoader.load("/textures/texture_2k_moon.jpg")
+const earthMaterial = new MeshBasicMaterial({map: earthTexture})
+const moonMaterial = new MeshBasicMaterial({map: moonTexture})
+
+// create meshs
+const earthGeometry = new SphereGeometry(1, 32, 32)
+const moonGeometry = new SphereGeometry(0.3, 32, 32)
+const earth = new Mesh(earthGeometry, earthMaterial)
+const moon = new Mesh(moonGeometry, moonMaterial)
+moon.position.set(1.5, 1.5)
+const moonContainer = new Object3D()
+moonContainer.add(moon)
+scene.add(earth.add(moonContainer))
+
+// create a renderer
+const canvas = document.querySelector('#first-scene')
+const renderer = new WebGLRenderer({canvas, antialias: true})
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+const clock = new Clock()
+let prevTime = 0
+
+// do rendering
+const rendering = () => {
+
+    // calc delta
+    const curTime = clock.getElapsedTime()
+    const delta = curTime - prevTime
+    prevTime = curTime
+    
+    // animate earth and moon
+    earth.rotation.y += delta * 0.4
+    moonContainer.rotation.y += delta * 0.4
+    moon.rotation.y += delta * 0.9
+
+    renderer.render(scene, camera)
+
+    window.requestAnimationFrame(rendering)
+}
+
+rendering()
+
+// required for responsive resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
+</script>
+<MainLayout title="Animations" lab={true}>
+    <canvas id="first-scene" slot="lab"></canvas>
+</MainLayout>
