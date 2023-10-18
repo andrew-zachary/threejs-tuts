@@ -1,0 +1,89 @@
+---
+import MainLayout from "../../layouts/main.astro"
+---
+<script>
+import { BufferGeometry, 
+  BufferAttribute, 
+  TextureLoader, 
+  PointsMaterial,
+  Points,
+  PerspectiveCamera, 
+  Scene, 
+  WebGLRenderer,
+  Clock } from "three"
+
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+  
+// scene
+const scene = new Scene()
+
+// camera
+const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
+camera.position.z = 2
+
+// array of vertices ***********************************************
+const positionArray = new Float32Array(4000)
+for(let i = 0; i < 4000; i++) {
+    positionArray[i] = (Math.random() - 0.5) * 3
+}
+
+const geometry = new BufferGeometry()
+geometry.setAttribute('position', new BufferAttribute(positionArray, 3))
+
+const texture = (new TextureLoader).load('/textures/snowflake.png')
+
+const material = new PointsMaterial()
+material.alphaMap = texture
+material.transparent = true
+material.depthTest = false
+material.size = 0.02
+
+const points = new Points(geometry, material)
+scene.add(points)
+// array of vertices ***********************************************
+
+// create a renderer
+const canvas = document.querySelector('#first-scene')
+const renderer = new WebGLRenderer({canvas, alpha: true})
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+
+const clock = new Clock()
+let prevTime = 0
+
+// do rendering
+const rendering = () => {
+
+    // calc delta, track animation time, and animate the cubeMesh
+    const curTime = clock.getElapsedTime()
+    const delta = curTime - prevTime
+    prevTime = curTime
+    points.rotation.y += delta * 0.05 
+    points.rotation.x += delta * 0.05
+
+    renderer.render(scene, camera)
+    controls.update()
+    window.requestAnimationFrame(rendering)
+}
+
+rendering()
+
+// required for responsive resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
+</script>
+<MainLayout title="Animations" lab={true}>
+    <canvas id="first-scene" class="winter-gradient" slot="lab"></canvas>
+</MainLayout>
+<style>
+.winter-gradient {
+    background: linear-gradient(to right, rgb(106, 163, 255), rgb(198, 238, 255))
+  }
+</style>
