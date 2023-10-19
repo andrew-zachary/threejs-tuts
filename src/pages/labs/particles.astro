@@ -51,6 +51,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // orbit controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+controls.enableZoom = false
+controls.enableRotate = false
 
 const clock = new Clock()
 let prevTime = 0
