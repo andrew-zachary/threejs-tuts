@@ -21,7 +21,7 @@ const scene = new Scene()
 const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
 camera.position.z = 2
 
-// array of vertices ***********************************************
+// ****** array of vertices ***********************************************
 const positionArray = new Float32Array(4000)
 for(let i = 0; i < 4000; i++) {
     positionArray[i] = (Math.random() - 0.5) * 3
@@ -40,7 +40,7 @@ material.size = 0.02
 
 const points = new Points(geometry, material)
 scene.add(points)
-// array of vertices ***********************************************
+// ****** array of vertices ***********************************************
 
 // create a renderer
 const canvas = document.querySelector('#first-scene')

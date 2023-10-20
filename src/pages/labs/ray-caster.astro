@@ -1,0 +1,116 @@
+---
+import MainLayout from "../../layouts/main.astro"
+---
+<script>
+import { MeshBasicMaterial,
+    BoxGeometry,
+    Mesh,
+    Raycaster,
+    Vector2,
+    PerspectiveCamera, 
+    Scene, 
+    WebGLRenderer } from "three"
+
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+  
+// scene
+const scene = new Scene()
+
+// camera
+const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30)
+camera.position.z = 5
+
+// ****** ray caster ***********************************************
+const shap1material = new MeshBasicMaterial({color: 'white'})
+const shap1Geometry = new BoxGeometry(1, 1, 1)
+const shap1Mesh = new Mesh(shap1Geometry, shap1material)
+shap1Mesh.position.y = 1.5
+shap1Mesh.name = "shap1"
+scene.add(shap1Mesh)
+
+const shap2material = new MeshBasicMaterial({color: 'white'})
+const shap2Geometry = new BoxGeometry(1, 1, 1)
+const shap2Mesh = new Mesh(shap2Geometry, shap2material)
+shap2Mesh.position.y = 0
+shap2Mesh.name = "shap2"
+scene.add(shap2Mesh)
+
+const shap3material = new MeshBasicMaterial({color: 'white'})
+const shap3Geometry = new BoxGeometry(1, 1, 1)
+const shap3Mesh = new Mesh(shap3Geometry, shap3material)
+shap3Mesh.position.y = -1.5
+shap3Mesh.name = "shap3"
+scene.add(shap3Mesh)
+
+let target = null
+const raycaster = new Raycaster()
+const pointer = new Vector2()
+
+window.addEventListener("click", (e) => {
+    pointer.x = (e.clientX / window.innerWidth) * 2 - 1
+    pointer.y = -(e.clientY / window.innerHeight) * 2 + 1
+    
+    // casting ray from camera to these meshes
+    raycaster.setFromCamera(pointer, camera)
+    const intersects = raycaster.intersectObjects([shap1Mesh, shap2Mesh, shap3Mesh])
+
+    if(intersects.length > 0) {
+
+        if(target) {
+            target.object.material.color.set('white')
+        }
+
+        switch (intersects[0].object.name) {
+            case 'shap1':
+                intersects[0].object.material.color.set('red')
+                break
+
+            case 'shap2':
+                intersects[0].object.material.color.set('green')
+                break
+
+            case 'shap3':
+                intersects[0].object.material.color.set('yellow')
+                break
+        
+            default:
+                break
+        }
+
+        target = intersects[0]
+    }
+})
+// ****** ray caster ***********************************************
+
+// create a renderer
+const canvas = document.querySelector('#first-scene')
+const renderer = new WebGLRenderer({canvas})
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+// orbit controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+controls.enableZoom = false
+controls.enableRotate = false
+
+// do rendering
+const rendering = () => {
+
+    renderer.render(scene, camera)
+    controls.update()
+    window.requestAnimationFrame(rendering)
+}
+
+rendering()
+
+// required for responsive resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+})
+</script>
+<MainLayout title="Animations" lab={true}>
+    <canvas id="first-scene" class="winter-gradient" slot="lab"></canvas>
+</MainLayout>
