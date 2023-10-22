@@ -1,19 +1,18 @@
 ---
-import MainLayout from "../layouts/main.astro"
-import PageTitle from "../components/page-title.astro";
 ---
+<script>
+    import App from "../js/threejs/app/App"
 
-<MainLayout title="">
+    const app = new App()
+</script>
+<!-- <p class="text-3xl mb-8 leading-snug">
+    Three.js is a JavaScript library that simplifies the creation of 3D graphics and interactive web experiences in the browser. It empowers developers with an intuitive API, allowing them to easily render 3D scenes, apply textures, and add animations to web projects. Three.js opens the door to the world of 3D without the complexities of low-level graphics programming.
+</p>
+<p class="text-3xl leading-snug mb-12">
+    Hello, I'm <a class="font-bold capitalize decoration-solid hover:underline" href="https://github.com/andrew-zachary">andrew zachary</a> a frontend web developer, let's learn this fantastic lib together. I will keep adding more advanced levels and projects in the future.
+</p>
+<p>
+    <a class="bg-secondary text-5xl text-primary hover:text-dim1 font-bold capitalize px-4 py-2 rounded-lg" href="basics">start learning</a>
+</p> -->
 
-    <PageTitle txt="threejs tuts" />
-
-    <p class="text-3xl mb-8 leading-snug">
-        Three.js is a JavaScript library that simplifies the creation of 3D graphics and interactive web experiences in the browser. It empowers developers with an intuitive API, allowing them to easily render 3D scenes, apply textures, and add animations to web projects. Three.js opens the door to the world of 3D without the complexities of low-level graphics programming.
-    </p>
-    <p class="text-3xl leading-snug mb-12">
-        Hello, I'm <a class="font-bold capitalize decoration-solid hover:underline" href="https://github.com/andrew-zachary">andrew zachary</a> a frontend web developer, let's learn this fantastic lib together. I will keep adding more advanced levels and projects in the future.
-    </p>
-    <p>
-        <a class="bg-secondary text-5xl text-primary hover:text-dim1 font-bold capitalize px-4 py-2 rounded-lg" href="basics">start learning</a>
-    </p>
-</MainLayout>
+<canvas id="view"></canvas>
