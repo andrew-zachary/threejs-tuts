@@ -1,7 +1,6 @@
 import { LoadingManager, TextureLoader, Mesh, MeshMatcapMaterial } from "three"
 
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js"
-import { FontLoader } from "three/addons/loaders/FontLoader.js"
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js"
 
 import App from "../app/App"
@@ -40,23 +39,27 @@ export default class AssetsLoader {
         return this.app.scene.add(new Mesh(geometry, material))
     }
 
-    loadMeshFont(path) {
+    loadMeshFont({fontType, fontLoader, text, size, position}) {
+        
+        fontLoader.load(fontType, (font) => {
 
-        const fontLoader = new FontLoader()
-        fontLoader.load(path, (font) => {
-
-            const geometry = new TextGeometry('Threejs Tuts!', {
+            const geometry = new TextGeometry(text, {
                 font,
-                size: 1,
+                size,
                 height: 0.2,
                 curveSegments: 12,
                 bevelEnabled: true,
                 bevelThickness: 0.01,
-                bevelSize: 0.01,
+                bevelSize: 0,
                 bevelOffset: 0,
-                bevelSegments: 1
+                bevelSegments: 0
             })
-            geometry.center()
+            geometry.computeBoundingBox()
+            geometry.translate(
+                - geometry.boundingBox.max.x * position.x,
+                - geometry.boundingBox.max.y * position.y,
+                - geometry.boundingBox.max.z * position.z,
+            )
 
             const material = new MeshMatcapMaterial()
 

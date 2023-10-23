@@ -1,3 +1,5 @@
+import { FontLoader } from "three/addons/loaders/FontLoader.js"
+
 import AssetsLoader from "../utiles/AssetsLoader"
 
 import App from "./App"
@@ -17,7 +19,21 @@ export default class World {
 
     build() {
 
-        this.assetsLoader.loadMeshFont('/fonts/montserrat-bold.json')
+        const fontLoader = new FontLoader()
+
+        this.assetsLoader.loadMeshFont({
+            fontType: this.assets.montserratFont, 
+            fontLoader, text: 'Threejs Tuts!',
+            size: 1 * (window.innerWidth / 1200),
+            position: { x: 0.5, y: 0.5, z: 0.5 }
+        })
+
+        this.assetsLoader.loadMeshFont({
+            fontType: this.assets.montserratFont,
+            fontLoader, text: 'Click To Start',
+            size: 0.4,
+            position: { x: 0.5, y: 5, z: 0.5 }
+        })
     }
 
     looping(delta) {}
