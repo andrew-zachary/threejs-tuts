@@ -36,38 +36,43 @@ export default class AssetsLoader {
 
         material[mapType] = textP1
  
-        return this.app.scene.add(new Mesh(geometry, material))
+        const mesh = new Mesh(geometry, material)
+        this.app.scene.add(mesh)
+        return mesh
     }
 
     loadMeshFont({fontType, fontLoader, text, size, position}) {
-        
-        fontLoader.load(fontType, (font) => {
 
-            const geometry = new TextGeometry(text, {
-                font,
-                size,
-                height: 0.2,
-                curveSegments: 12,
-                bevelEnabled: true,
-                bevelThickness: 0.01,
-                bevelSize: 0,
-                bevelOffset: 0,
-                bevelSegments: 0
-            })
-            geometry.computeBoundingBox()
-            geometry.translate(
-                - geometry.boundingBox.max.x * position.x,
-                - geometry.boundingBox.max.y * position.y,
-                - geometry.boundingBox.max.z * position.z,
-            )
+        return new Promise((resolve) => {
 
-            const material = new MeshMatcapMaterial()
+            fontLoader.load(fontType, (font) => {
 
-            this.loadMeshWithTexture({
-                path: '/textures/p1.jpg',
-                mapType: 'matcap',
-                material,
-                geometry
+                const geometry = new TextGeometry(text, {
+                    font,
+                    size,
+                    height: 0.2,
+                    curveSegments: 12,
+                    bevelEnabled: true,
+                    bevelThickness: 0.01,
+                    bevelSize: 0,
+                    bevelOffset: 0,
+                    bevelSegments: 0
+                })
+                geometry.computeBoundingBox()
+                geometry.translate(
+                    - geometry.boundingBox.max.x * position.x,
+                    - geometry.boundingBox.max.y * position.y,
+                    - geometry.boundingBox.max.z * position.z,
+                )
+
+                const material = new MeshMatcapMaterial()
+
+                resolve(this.loadMeshWithTexture({
+                    path: '/textures/p1.jpg',
+                    mapType: 'matcap',
+                    material,
+                    geometry
+                }))
             })
         })
     }

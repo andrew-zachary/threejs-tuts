@@ -15,6 +15,7 @@ export default class App {
 
         // elements
         this.canvas = document.querySelector('#view')
+        this.canvas.addEventListener('click', () => window.location = '/basics')
         this.scene = new Scene()
 
         // world
